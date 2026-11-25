@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Human Resource Planner</title>
+        <link rel="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <!-- SIDEBAR -->
+             <aside class="sidebar">
+                <h2>HR Planner</h2>
+                <ul>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#employees">Employees</a></li>
+                    <li><a href="#departments">Departments</a></li>
+                    <li><a href="#attendence">Attendence</a></li>
+                    <li><a href="#leaves">Leave Management</a></li>
+                </ul>
+                <div class="sidebar-footer">
+                    <p>Human Resource System</p>
+                </div>
+             </aside>
+             <!-- MAIN CONTENT-->
+              <main class="main-content">
+                <!-- HEADER -->
+                 <header>
+                    <div>
+                        <h1>Human Resource Planner</h1>
+                        <p>Employee Management Dashboard</p>
+                    </div>
+                    <div class="admin">
+                        <span>HR Admin</span>
+                    </div>
+                 </header>
+                 <!-- DASHBOARD -->
+                  <section id="dashboard">
+                    <h2>Dashboard Overview</h2>
+                    <div class="cards">
+                        <div class="card">
+                            <h3>Total Employees</h3>
+                            <h1 id="totalEmployees">4</h1>
+                            <p>Registered employees</p>
+                        </div>
+                        <div class="card">
+                            <h3>Departments</h3>
+                            <h1>4</h1>
+                            <p>Active departments</p>
+                        </div>
+                        <div class="card">
+                            <h3>Present Today</h3>
+                            <h1 id="presentCount">3</h1>
+                            <p>Employees present</p>
+                        </div>
+                        <div class="card">
+                            <h3>Pending Leaves</h3>
+                            <h1 id="pendingCount">2</h1>
+                            <p>Awaiting approval</p>
+                        </div>
+                    </div>
+                  </section>
+                  <!-- EMPLOYEES -->
+                   <section id="employees">
+                    <div class="section-heading">
+                        <h2>Employee Management</h2>
+                        <buttononclick="showEmployeeForm()">
++ Add Employee
+                        </button>
+                    </div>
+                    <div class="employeeForm" class="form-box" hidden>
+                        <h3>Add New Employee</h3>
+                        <form id="addEmployeeForm">
+                            <input type="text" id="empName" placeholder="Employee Name" required>
+                            <input type="email" id="empEmail" placeholder="Email Address" required>
+                            <input type="text" id="empDepartment" placeholde="Department" required>
+                            <input type="text" id="empPosition" placeholder="Job Position" required>
+                            <button type="submit">Save Employee</button>
+                            <button type="button" onclick="hiddenEmployeeForm()">Cancel</button>
+                        </form>
+                    </div>
+                    <input type="text" id="searchEmployee" placeholder="Search employees..." oninput="searchEmployees()">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Department</th>
+                                <th>Position</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employeeTable">
+                            <tr>
+                                <td>101</td>
+                                <td>Sravani</td>
+                                <td>sravani12@gmail.com</td>
+                                <td>IT</td>
+                                <td>Developer</td>
+                                <td>Active</td>
+                                <td><button class="delete-btn" onclick="deleteEmployee(this)">Delete</button></td>
+                            </tr>
+                            <tr>
+                                <td>102</td>
+                                <td>Poojitha</td>
+                                <td>poojitha123@gmail.com</td>
+                                <td>HR</td>
+                                <td>HR Manager</td>
+                                <td>Active</td>
+                                <td><button class="delete-btn" onclick="deleteEmployee(this)">Delete</button></td>
+                            </tr>
+                            <tr>
+                                <td>103</td>
+                                <td>Pranitha</td>
+                                <td>pranitha12@gmail.com</td>
+                                <td>Finance</td>
+                                <td>Accountant</td>
+                                <td>Active</td>
+                                <td><button class="delete-btn" onclick="deleteEmployee(this)">Delete</button></td>
+                                <td>104</td>
+                                <td>Ananya</td>
+                                <td>ananya@gmail.com</td>
+                                <td>Marketing</td>
+                                <td>Executive</td>
+                                <td>Active</td>
+                                <td><button class="delete-btn" onclick="deleteEmployee(this)">Delete</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                   </section>
+                   <!-- DEPARTMENTS -->
+                    <section id="departments">
+                        <h2>Department Management</h2>
+                        <div class="department-container">
+                            <div class="department">
+                                <h3>IT Department</h3>
+                                <p>Software and Technical Team</p>
+                            </div>
+                            <div class="department">
+                                <h3>HR Department</h3>
+                                <p>Human Resource Team</p>
+                            </div>
+                            <div class="department">
+                                <h3>Finance Department</h3>
+                                <p>Accounts and Finance Team</p>
+                            </div>
+                            <div class="department">
+                                <h3>Marketing Department</h3>
+                                <p>Marketing and Sales Team</p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- ATTENDENCE -->
+                     <section id="attendence">
+                        <h2>Attendence Management</h2>
+                        <div class="panel">
+                            <form id="attendenceForm">
+                                <input type="text" id="attendanceName" placeholder="Employee Name" required>
+                                <selectid="attendanceStatus">
+                                    <option value="Present">Present</option>
+                                    <option value="Absent">Absent</option>
+                                    <option value="Late">Late</option>
+                                </select>
+                                <button type="submit">Mark Attendance</button>
+                            </form>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Employee</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="attendaceTable">
+                                    <tr>
+                                        <td>Sravani</td>
+                                        <td>Today</td>
+                                        <td>Present</td>
+                                    </tr>
+                                    <tr>
+                                    <td>Poojitha</td>
+                                    <td>Today</td>
+                                    <td>Present</td>
+                                    </tr>
+<tr>
+    <td>Pranitha</td>
+    <td>Today</td>
+    <td>Absent</td>
+</tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                     </section>
+                     <!-- LEAVE MANAGEMENT -->
+                      <section id="leaves">
+                        <h2>Leave Management</h2>
+                        <div class="panel">
+                            <form id="leaveForm">
+                                <input type="text" id="leaveName" placeholder="Employee Name" required>
+                                <selectid="leaveType">
+                                    <option>Casual Leave</option>
+                                    <option>Sick Leave</option>
+                                    <option>Annual Leave</option>
+                                </select>
+                                <inputtype="date" id="leaveDate" required>
+                                <button type="submit">Apply Leave</button>
+
+                            </form>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Employee</th>
+                                        <th>Leave Type</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="leaveTable">
+                                    <tr>
+                                        <td>Ananya</td>
+                                        <td>Sick Leave</td>
+                                        <td>15-1-2024</td>
+                                        <td>Pending</td>
+                                        <td>
+                                            <buttononclick="approveLeave(this)">Approve</button>
+                                            <buttonclass="delete-btn" onclick="rejectLeave(this)">Reject</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pranitha</td>
+                                        <td>Casual Leave</td>
+                                        <td>28-1-2024</td>
+                                        <td>Pending</td>
+                                        <td>
+                                            <buttononclick="approveLeave(this)">Approve</button>
+                                            <buttonclass="delete-btn" onclick="rejectLeave(this)">Reject</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                      </section>
+                      <footer>
+                        <p>Human Resource Planner | Final Year College Project</p>
+                      </footer>
+              </main>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
